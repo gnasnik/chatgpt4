@@ -1,12 +1,13 @@
 import { leading, throttle } from '@solid-primitives/scheduled'
 import StreamableText from '../StreamableText'
 import Charge from './Charge'
-import type { Accessor, Setter } from 'solid-js'
+import { Accessor, Setter, Show } from 'solid-js'
 import type { MessageInstance } from '@/types/message'
 import type { User } from '@/types'
 interface Props {
   conversationId: string
   messages: Accessor<MessageInstance[]>
+
   setUser: Setter<User>
   user: Accessor<User>
 }
@@ -24,24 +25,41 @@ export default ({ conversationId, messages, user, setUser }: Props) => {
 
   return (
     <div class="flex flex-col h-full">
-      <div class="px-6">
+      {/* <div class="px-6">
         <Charge
           setUser={setUser}
           user={user}
         />
       </div>
-      <div class="px-6 text-gray-500 text-xs mt-2">
-        注意:单次对话模式新问题将直接覆盖老问题
+      */}
+
+    <div class="flex justify-center">
+      <p class="px-6 pb-2 mt-2 text-xs text-yellow-900 items-center"> 注意:单次对话模式新问题将直接覆盖老问题</p>
+    </div>
+
+    <div class="flex-[1] border-b border-base p-6 break-all overflow-y-scroll">
+
+      <div class="flex flex-row gap-4">
+        <Show when={!!messageInput()}>
+          <div class={`shrink-0 w-7 h-7 rounded-md op-80 bg-gradient-to-b from-[#fccb90] to-[#d57eeb]`}></div>
+        </Show>
+        
+          <StreamableText
+            class="mx-auto flex-grow"
+            text={messageInput()?.content || ''}
+          />
       </div>
-      <div class="flex-[1] border-b border-base p-6 break-words overflow-y-scroll">
-        <StreamableText
-          class="mx-auto"
-          text={messageInput()?.content || ''}
-        />
       </div>
-      <div class="scroll-list flex-[2] p-6 break-words overflow-y-scroll" ref={scrollRef!}>
+
+      <div class="scroll-list flex-[2] p-6 break-all overflow-y-scroll" ref={scrollRef!}>
+      <div class="flex flex-row gap-4">
+      <Show when={!!messageOutput()}>
+        <div class="relative p-1 rounded-sm h-[30px] w-[30px] text-white flex items-center justify-center bg-[#19c37d]">
+          <img src="gpt.svg" />
+        </div>
+      </Show>  
         <StreamableText
-          class="mx-auto"
+          class="mx-auto flex-grow"
           text={messageOutput()?.content || ''}
           streamInfo={messageOutput()?.stream
             ? () => ({
@@ -52,6 +70,9 @@ export default ({ conversationId, messages, user, setUser }: Props) => {
             : undefined}
         />
       </div>
+
+        </div>
+      
     </div>
   )
 }

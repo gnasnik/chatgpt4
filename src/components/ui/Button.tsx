@@ -9,6 +9,7 @@ interface Props {
   prefix?: JSXElement
   children?: JSXElement
   onClick: () => void
+  class?: string
 }
 
 export default (props: Props) => {
@@ -34,6 +35,7 @@ export default (props: Props) => {
         'fcc rounded-md cursor-pointer transition-colors',
         buttonVariantClass(),
         buttonSizeClass(),
+        props.class,
       ].join(' ')}
       onClick={props.onClick}
     >

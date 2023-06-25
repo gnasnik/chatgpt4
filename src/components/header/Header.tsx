@@ -35,7 +35,7 @@ export default () => {
           <div i-carbon-add />
         </div>
         <div
-          class="fcc p-2 rounded-md text-xl hv-foreground lg:hidden"
+          class="fcc p-2 rounded-md text-xl hv-foreground lg-hidden"
           onClick={() => showSettingsSidebar.set(true)}
         >
           <div i-carbon-settings />

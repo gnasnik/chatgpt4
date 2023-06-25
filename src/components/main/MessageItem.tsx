@@ -12,6 +12,7 @@ import { DropDownMenu, Tooltip } from '../ui/base'
 import Button from '../ui/Button'
 import type { MenuItem } from '../ui/base'
 import type { MessageInstance } from '@/types/message'
+import { Show } from 'solid-js'
 
 interface Props {
   conversationId: string
@@ -100,7 +101,7 @@ export default (props: Props) => {
 
   const roleClass = {
     system: 'bg-gradient-to-b from-gray-300 via-gray-200 to-gray-300',
-    user: 'bg-gradient-to-b from-gray-300 via-gray-200 to-gray-300',
+    user: 'bg-gradient-to-b from-purple-300 via-purple-200 to-purple-300',
     assistant: 'bg-gradient-to-b from-[#fccb90] to-[#d57eeb]',
   }
 
@@ -112,7 +113,15 @@ export default (props: Props) => {
       }}
     >
       <div class="max-w-base flex gap-4 overflow-hidden">
-        <div class={`shrink-0 w-7 h-7 rounded-md op-80 ${roleClass[props.message.role]}`} />
+        {/* <div class={`shrink-0 w-7 h-7 rounded-md op-80 ${roleClass[props.message.role]}`} /> */}
+        <Show when={props.message.role === 'assistant'}>
+            <div class="relative p-1 rounded-sm h-[30px] w-[30px] text-white flex items-center justify-center bg-[#19c37d]">
+              <img src="gpt.svg" />
+            </div>
+          </Show>
+          <Show when={props.message.role !== 'assistant'}>
+            <div class={`shrink-0 w-7 h-7 rounded-md op-80 ${roleClass[props.message.role]}`}></div>
+          </Show>
         <div id="menuList-wrapper" class={`sm:hidden block absolute bottom-2 right-4 z-10 cursor-pointer op-0 group-hover-op-70 ${isEditing() && '!hidden'}`}>
           <DropDownMenu menuList={menuList()}>
             <div class="text-xl i-carbon:overflow-menu-horizontal" />

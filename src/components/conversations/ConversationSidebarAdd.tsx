@@ -13,6 +13,8 @@ export default () => {
       icon="i-carbon-add"
       onClick={handleAdd}
       size="sm"
+      variant="ghost"
+      class="hover:bg-[#343541] border border-white/20"
     >
       {t('conversations.add')}
     </Button>

@@ -4,7 +4,6 @@ import { createScrollPosition } from '@solid-primitives/scroll'
 import { leading, throttle } from '@solid-primitives/scheduled'
 import { isSendBoxFocus } from '@/stores/ui'
 import MessageItem from './MessageItem'
-import Charge from './Charge'
 import type { Accessor, Setter } from 'solid-js'
 import type { MessageInstance } from '@/types/message'
 import type { User } from '@/types'
@@ -45,13 +44,13 @@ export default (props: Props) => {
       <div class="scroll-list relative flex flex-col h-full overflow-y-scroll" ref={scrollRef!}>
         <div class="w-full">
 
-          <div class="px-6 pb-2">
+          {/* <div class="px-6 pb-2">
             <Charge
               setUser={props.setUser}
               user={props.user}
             />
-          </div>
-          <div class="px-6 text-gray-500 text-xs my-2">
+          </div> */}
+          <div class="px-6 text-yellow-900 text-xs my-2 flex justify-center">
             注意:连续对话消耗的字数会连续累加;不需要可选择单次对话,但无法理解上下文
           </div>
           <For each={props.messages()}>

@@ -36,17 +36,17 @@ export default () => {
           )}
         </For>
       </main>
-      <footer class="h-14 fi justify-between px-3">
+      <footer class="h-14 fi justify-space px-3">
         <ThemeToggle />
         <div text-xs op-40 px-2>
-          <a href="https://img.quanminzc.com/qmzc/202306/1687339397746.jpg" target="_blank" rel="noreferrer" class="hv-foreground">
+          <a href="https://chatgpt-chinaproxy.oss-cn-guangzhou.aliyuncs.com/20230614103310.jpg" target="_blank" rel="noreferrer" class="hv-foreground">
             加群防失联
           </a>
           <span class="px-1"> · </span>
-          <a href="https://lg8h2izm09.feishu.cn/docx/YU7UduJFNoMKSPxa94JcWkd0nJg" target="_blank" rel="noreferrer" class="hv-foreground">
+          <a href="https://n0a6ea0bnj9.feishu.cn/docx/Na7AdeXM8oWjUCxjBP7clDRmnle" target="_blank" rel="noreferrer" class="hv-foreground">
             使用说明
           </a>
-        </div>
+        </div>  
       </footer>
     </div>
   )

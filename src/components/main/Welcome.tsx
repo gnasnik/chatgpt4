@@ -1,14 +1,14 @@
 import { getSettingsByProviderId, setSettingsByProviderId } from '@/stores/settings'
-import { For, Show, onMount } from 'solid-js'
+import { Show, onMount } from 'solid-js'
 import { useStore } from '@nanostores/solid'
 import { useI18n } from '@/hooks'
-import { addConversation } from '@/stores/conversation'
-import { conversationMapSortList, currentConversationId } from '@/stores/conversation'
-import { showConversationEditModal, currentUser } from '@/stores/ui'
+import { conversationMapSortList } from '@/stores/conversation'
+import { currentUser } from '@/stores/ui'
 import Login from './Login'
 import Charge from './Charge'
 import type { User } from '@/types'
 import type { Accessor, Setter } from 'solid-js'
+import Announcement from './Announcement'
 
 interface Props {
   setIsLogin: Setter<boolean>
@@ -63,7 +63,7 @@ export default (props: Props) => {
   return (
 
   <div class="flex h-full w-full pt-10">
-      <div class="flex flex-col w-full max-w-md mx-12 sm:mx-18 overflow-hidden space-y-2">
+      <div class="flex flex-col w-full mx-12 sm:mx-18 overflow-hidden space-y-2">
 
         <Show when={!props.isLogin()}>
           <div class="fi">
@@ -83,7 +83,8 @@ export default (props: Props) => {
             setUser={props.setUser}
             user={props.user}
           />
-         
+         <Announcement></Announcement>
+
         </Show>
       </div>
     

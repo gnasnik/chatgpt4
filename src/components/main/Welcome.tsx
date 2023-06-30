@@ -9,6 +9,7 @@ import Charge from './Charge'
 import type { User } from '@/types'
 import type { Accessor, Setter } from 'solid-js'
 import Announcement from './Announcement'
+import { produce } from 'solid-js/store'
 
 interface Props {
   setIsLogin: Setter<boolean>
@@ -83,7 +84,10 @@ export default (props: Props) => {
             setUser={props.setUser}
             user={props.user}
           />
-         <Announcement></Announcement>
+          
+          <Show when={props.user().word > 300 || props.user().temp_times > 0}>
+            <Announcement></Announcement>
+          </Show>
 
         </Show>
       </div>

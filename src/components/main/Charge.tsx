@@ -157,8 +157,10 @@ export default (props: Props) => {
         <div class="mt-4">
           <Show when={!url()}>
           <a href="https://chatgpt-chinaproxy.oss-cn-guangzhou.aliyuncs.com/wechat.jpg" class="text-yellow-900" target="_blank" rel="noreferrer">如充值未到账或有使用问题,请点击联系客服</a><br/>
+          <div>
+          🔥🔥🔥 <span class="text-sm text-red bold">年中充值优惠活动进行中</span>🔥🔥🔥 
+          </div>
             <span class="text-sm">
-
               请选择充值金额, GPT4按字数计费(注意!不是次数)
             </span>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-1">

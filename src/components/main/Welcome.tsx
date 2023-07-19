@@ -69,7 +69,7 @@ export default (props: Props) => {
         <Show when={!props.isLogin()}>
           <div class="fi">
             {/* <span class="text-(2xl transparent) font-extrabold bg-(clip-text gradient-to-r) from-sky-400 to-emerald-600">欢迎使用 ChatGPT 4.0 </span> */}
-            <span class="text-2xl font-bold"> 欢迎使用 ChatGPT</span>
+            <span class="text-2xl font-bold"> 欢迎使用 ChatGPT 4.0</span>
             <span class="text-xs ml-2 font-bold rounded bg-[#fde047] text-[#8c5712] p-1">PLUS</span>
           </div>
           {/* <div mt-1 op-60>欢迎来到人工智能时代</div> */}

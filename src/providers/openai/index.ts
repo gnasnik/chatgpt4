@@ -80,12 +80,12 @@ const providerOpenAI = () => {
         name: '单次对话 (消耗少,无上下文)',
         settings: [],
       },
-      // {
-      //   id: 'image_generation',
-      //   type: 'image_generation',
-      //   name: 'DALL·E',
-      //   settings: [],
-      // },
+      {
+        id: 'image_generation',
+        type: 'image_generation',
+        name: 'DALL·E',
+        settings: [],
+      },
     ],
     handlePrompt,
     handleRapidPrompt,

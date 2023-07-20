@@ -24,11 +24,11 @@ export const fetchImageGeneration = async(payload: OpenAIFetchPayload) => {
   const initOptions = {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${payload.apiKey}`,
+      'Authorization': `Bearer ${apiKey}`,
     },
     method: 'POST',
     body: JSON.stringify(payload.body),
     signal: payload.signal,
   }
-  return fetch(`${payload.baseUrl}/v1/images/generations`, initOptions)
+  return fetch(`${baseUrl}/v1/images/generations`, initOptions)
 }

@@ -16,6 +16,7 @@ export default ({ instance }: Props) => {
   const isTouchDevice = 'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0
 
   const handleClick = () => {
+    currentConversationId.set('')
     currentConversationId.set(instance.id)
     showConversationSidebar.set(false)
   }

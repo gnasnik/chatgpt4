@@ -2,6 +2,9 @@ import { createSignal, Show, For} from 'solid-js';
 import { showConversationQrcodeModal,showConversationPurchaseModal, currentUser} from '@/stores/ui'
 import { useStore } from '@nanostores/solid'
 import { Transition } from 'solid-transition-group'
+import { addConversation, currentConversation, currentConversationId, updateConversationById } from '@/stores/conversation'
+import type { Conversation } from '@/types/conversation'
+
 
 interface MenuItem {
     name: string,
@@ -12,7 +15,6 @@ interface MenuItem {
 
 export default () => { 
     const $currentUser = useStore(currentUser)
-    const [isShowQrcode, setShowQrcode] = createSignal(false);
     const [isMenuOpen, setMenuOpen] = createSignal(false);
     const [menuItems] = createSignal<MenuItem[]>([
         {
@@ -35,6 +37,17 @@ export default () => {
       e.stopPropagation()
       showConversationPurchaseModal.set(true)
     }
+
+    const handleDrawingClick = () => {
+      currentConversationId.set('')
+      const payload: Partial<Conversation> = { bot: "provider-openai:image_generation" }
+      payload.id = `id_${Date.now()}`
+      payload.name = "AI 画图"
+      payload.systemInfo = undefined
+      payload.mockMessages = undefined
+      addConversation(payload)
+      updateConversationById(payload.id, payload)
+    }
   
     const handleMenuItemClick = (item: MenuItem) => {
       if (item.value == 'qrcode') {
@@ -49,8 +62,7 @@ export default () => {
 
     return (
         <Show when={!!$currentUser()}>
-        <div >
-           
+        <div >    
             <hr class="border-t border-gray-600 my-2" />
             <a class="flex p-3 items-center gap-3 transition-colors duration-200 text-white cursor-pointer text-sm hover:bg-[#343541] rounded-md" onclick={handlePurchaseButtonClick}>
               <span class="flex w-full flex-row justify-between">
@@ -59,6 +71,15 @@ export default () => {
               支付宝充值</span>
               <span class="rounded-md bg-yellow-200 px-1.5 py-0.5 text-xs font-medium uppercase text-gray-800">优惠</span></span>
             </a>
+
+            <a class="flex p-3 items-center gap-3 transition-colors duration-200 text-white cursor-pointer text-sm hover:bg-[#343541] rounded-md" onclick={handleDrawingClick}>
+              <span class="flex w-full flex-row justify-between">
+                <span class="gold-new-button flex items-center gap-3">
+                <span class="i-carbon-draw"/>AI画图 DALL-E</span>
+                <span class="rounded-md bg-gray-200 px-1.5 py-0.5 text-xs font-medium text-gray-800">Beta</span></span>
+
+            </a>
+
             <div class="relative">
 
             <Transition name="slide-bottom">

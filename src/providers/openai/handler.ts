@@ -1,5 +1,5 @@
 import { fetchChatCompletion, fetchImageGeneration } from './api'
-import { parseStream } from './parser'
+import { parseStream, consumeWord } from './parser'
 import type { HandlerPayload, Provider } from '@/types/provider'
 
 export const handlePrompt: Provider['handlePrompt'] = async(payload, signal?: AbortSignal) => {
@@ -94,14 +94,39 @@ const handleChatCompletion = async(payload: HandlerPayload, signal?: AbortSignal
 }
 
 const handleImageGeneration = async(payload: HandlerPayload) => {
+    // 消耗字数
+    let word_num = 0
+    if (payload.conversationId !== 'temp') {
+      payload.messages.forEach((v) => {
+        word_num += v.content.length
+      })
+      const useRes = await fetch(`${import.meta.env.API_URL}/api/gpt/consumeWord`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Token': payload.globalSettings.authToken as string,
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          model: payload.globalSettings.model,
+          type: 'ask',
+          word_num,
+          app_key: import.meta.env.APP_KEY,
+        }),
+      })
+      const res = await useRes.text()
+      const resJson = JSON.parse(res)
+      if (resJson.code !== 200)
+        return resJson.message
+    }
+
   const prompt = payload.prompt
   const response = await fetchImageGeneration({
     apiKey: payload.globalSettings.apiKey as string,
-    baseUrl: (payload.globalSettings.baseUrl as string).trim().replace(/\/$/, ''),
+    baseUrl: payload.globalSettings.baseUrl as string,
     body: {
       prompt,
       n: 1,
-      size: '512x512',
+      size: '1024x1024',
       response_format: 'url', // TODO: support 'b64_json'
     },
   })
@@ -111,5 +136,8 @@ const handleImageGeneration = async(payload: HandlerPayload) => {
     throw new Error(errMessage)
   }
   const resJson = await response.json()
+  consumeWord(payload.globalSettings, 0)
   return resJson.data[0].url
+
+  
 }

@@ -1,4 +1,4 @@
-import { Match, Switch, createEffect, createSignal } from 'solid-js'
+import { Match, Switch, createEffect, createSignal, Show } from 'solid-js'
 import { useStore } from '@nanostores/solid'
 import { conversationMap, currentConversationId } from '@/stores/conversation'
 import { conversationMessagesMap } from '@/stores/messages'
@@ -11,6 +11,7 @@ import Continuous from './Continuous'
 import Single from './Single'
 import Image from './Image'
 import type { User } from '@/types'
+import Drawing from './Drawing'
 
 export default () => {
   const { t } = useI18n()
@@ -66,7 +67,7 @@ export default () => {
         />
       )}
     >
-      <Match when={$currentConversationId() && !currentConversationMessages().length}>
+      <Match when={$currentConversationId() && !currentConversationMessages().length && currentBot()?.type != 'image_generation'}>
         <ConversationEmpty
           conversation={currentConversation()}
           setUser={setUser}
@@ -90,7 +91,7 @@ export default () => {
         />
       </Match>
       <Match when={currentBot()?.type === 'image_generation'}>
-        <Image
+        <Drawing
           // conversationId={$currentConversationId()}
           messages={currentConversationMessages}
           // fetching={isLoading() || !isStreaming()}

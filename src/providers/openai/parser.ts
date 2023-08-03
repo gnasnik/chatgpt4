@@ -2,7 +2,7 @@ import { createParser } from 'eventsource-parser'
 import type { ParsedEvent, ReconnectInterval } from 'eventsource-parser'
 import type { SettingsPayload } from '@/types/provider'
 
-const consumeWord = async(globalSettings: SettingsPayload, word_num: number) => {
+export const consumeWord = async(globalSettings: SettingsPayload, word_num: number) => {
   const useRes = await fetch(`${import.meta.env.API_URL}/api/gpt/consumeWord`, {
     headers: {
       'Content-Type': 'application/json',

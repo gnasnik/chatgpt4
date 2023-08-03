@@ -5,6 +5,7 @@ import type { User } from '@/types'
 interface Props {
   setUser: Setter<User>
   user: Accessor<User>
+  show?: boolean
 }
 
 interface PayInfoType { name: string, price: number, tips: string }
@@ -17,6 +18,7 @@ export default (props: Props) => {
       props.user().word = userJson.word
       props.user().temp_times = userJson.temp_times
       props.user().expired_at = userJson.expired_at
+      props.user().nickname = userJson.nickname
       props.setUser({ ...props.user() })
     }, 3000)
   })
@@ -28,6 +30,7 @@ export default (props: Props) => {
   const [showCharge, setShowCharge] = createSignal(false)
 
   const [payinfo, setPayinfo] = createSignal<PayInfoType[]>([{ name: '', price: 0, tips: '' }])
+  setShowCharge(props.show? props.show: false)
 
   const selfCharge = async() => {
     const response = await fetch('/api/exchange', {
@@ -153,10 +156,12 @@ export default (props: Props) => {
       <Show when={showCharge()}>
         <div class="mt-4">
           <Show when={!url()}>
-            <a href="https://appfront0220.s3.ap-southeast-1.amazonaws.com/qmzc/2023-02-23/WechatIMG35.jpeg">如充值未到账或有使用问题,请点击联系客服</a><br />
+          <a href="https://chatgpt-chinaproxy.oss-cn-guangzhou.aliyuncs.com/wechat.jpg" class="text-yellow-900" target="_blank" rel="noreferrer">如充值未到账或有使用问题,请点击联系客服</a><br/>
+          <div>
+          🔥🔥🔥 <span class="text-sm text-red bold">年中充值优惠活动进行中</span>🔥🔥🔥 
+          </div>
             <span class="text-sm">
-
-              年中充值优惠活动,请选择充值金额, GPT4按字数计费(注意!不是次数)
+              请选择充值金额, GPT4按字数计费(注意!不是次数)
             </span>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-1">
               <Index each={payinfo()}>

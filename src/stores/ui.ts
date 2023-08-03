@@ -9,6 +9,11 @@ export const showConfirmModal = atom(false)
 export const showShareModal = atom(false)
 export const showSelectMessageModal = atom(false)
 
+export const showConversationQrcodeModal = atom(false)
+export const showConversationPurchaseModal = atom(false)
+export const currentUser = atom(null)
+
+export const inputPrompt = atom('')
 export const isSendBoxFocus = atom(false)
 export const currentErrorMessage = atom<ErrorMessage | null>(null)
 export const emojiPickerCurrentPick = atom<string | undefined>()

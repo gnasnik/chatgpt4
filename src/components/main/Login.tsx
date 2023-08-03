@@ -67,7 +67,7 @@ export default (props: Props) => {
     <div id="input_container" class="mt-2 max-w-[450px]">
       <input
         ref={emailRef!}
-        placeholder="邮箱"
+        placeholder="输入邮箱账号"
         type="text"
         class="px-4 py-3 h-12 rounded-sm bg-(slate op-15) base-focus w-full"
         value=""
@@ -93,7 +93,7 @@ export default (props: Props) => {
       </div>
 
       <button onClick={login} class="w-1/3 h-12 mt-2 px-4 py-2 bg-slate bg-op-15 hover:bg-op-20 rounded-sm">
-        开启4.0
+        登陆
       </button>
     </div>
   )

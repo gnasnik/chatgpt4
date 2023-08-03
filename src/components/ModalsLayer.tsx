@@ -5,6 +5,8 @@ import {
   showSelectMessageModal,
   showSettingsSidebar,
   showShareModal,
+  showConversationQrcodeModal,
+  showConversationPurchaseModal,
 } from '@/stores/ui'
 import ConversationSidebar from './conversations/ConversationSidebar'
 import SettingsSidebar from './settings/SettingsSidebar'
@@ -12,6 +14,8 @@ import ConversationEditModal from './conversations/ConversationEditModal'
 import EmojiPickerModal from './ui/EmojiPickerModal'
 import ShareModal from './ui/ShareModal'
 import SelectMessageModal from './ui/SelectMessageModal'
+import UserbarQrcodeModal from './conversations/UserbarQrcodeModal'
+import UserbarPurchaseModal from './conversations/UserbarPurchaseModal'
 import Modal from './ui/Modal'
 
 export default () => {
@@ -47,6 +51,16 @@ export default () => {
           <SelectMessageModal />
         </div>
       </Modal>
+      <Modal bindValue={showConversationQrcodeModal} direction="bottom" closeBtnClass="top-6 right-6">
+        <div class="max-h-[70vh] w-full">
+          <UserbarQrcodeModal />
+        </div>
+      </Modal>
+      <Modal bindValue={showConversationPurchaseModal} direction="bottom" closeBtnClass="top-6 right-6">
+        <div class="max-h-[70vh] w-full">
+          <UserbarPurchaseModal />
+        </div>
+      </Modal>      
     </>
   )
 }

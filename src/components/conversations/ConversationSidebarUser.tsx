@@ -75,8 +75,8 @@ export default () => {
             <a class="flex p-3 items-center gap-3 transition-colors duration-200 text-white cursor-pointer text-sm hover:bg-[#343541] rounded-md" onclick={handleDrawingClick}>
               <span class="flex w-full flex-row justify-between">
                 <span class="gold-new-button flex items-center gap-3">
-                <span class="i-carbon-draw"/>AI画图 DALL-E</span>
-                <span class="rounded-md bg-gray-200 px-1.5 py-0.5 text-xs font-medium text-gray-800">Beta</span></span>
+                <span class="i-carbon-draw"/>画图 DALL-E-3</span>
+                <span class="rounded-md bg-yellow-200 px-1.5 py-0.5 text-xs font-medium text-gray-800">NEW</span></span>
 
             </a>
 

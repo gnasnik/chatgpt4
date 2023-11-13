@@ -46,6 +46,7 @@ export const fetchImageGeneration = async(payload: OpenAIFetchPayload) => {
     method: 'POST',
     body: JSON.stringify(payload.body),
     signal: payload.signal,
+    model: 'dall-e-3',
   }
   return fetch(`${baseUrl}/v1/images/generations`, initOptions)
 }

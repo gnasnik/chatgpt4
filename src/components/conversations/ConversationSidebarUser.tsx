@@ -76,7 +76,7 @@ export default () => {
               <span class="flex w-full flex-row justify-between">
                 <span class="gold-new-button flex items-center gap-3">
                 <span class="i-carbon-draw"/>画图 DALL-E-3</span>
-                <span class="rounded-md bg-yellow-200 px-1.5 py-0.5 text-xs font-medium text-gray-800">NEW</span></span>
+                <span class="rounded-md bg-yellow-200 px-1.5 py-0.5 text-xs font-medium text-gray-800">推荐</span></span>
 
             </a>
 
